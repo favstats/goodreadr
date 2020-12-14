@@ -21,6 +21,11 @@ gr_quotes <- function(x) {
     author <- author_html %>%
         rvest::html_text()
 
+    author_url <- author_html  %>%
+        rvest::html_attr("href") %>%
+        paste0("https://www.goodreads.com", .)
+
+
     ratings_dat <- raw %>% rvest::html_nodes(xpath = "/html/body/div[2]/div[3]/div[1]/div[2]/div[3]/text()[6]") %>%
         rvest::html_text() %>%
         gsub("(\\d),(\\d)", "\\1\\2", ., perl=TRUE) %>%
@@ -32,9 +37,6 @@ gr_quotes <- function(x) {
         magrittr::set_names(c("ratings", "avg_rating", "reviews")) %>%
         dplyr::bind_rows()
 
-    author_url <- author_html  %>%
-        rvest::html_attr("href") %>%
-        paste0("https://www.goodreads.com", .)
 
 
 

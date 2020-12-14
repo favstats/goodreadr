@@ -2,4 +2,5 @@
 
 export("%>%")
 export(gr_quotes)
+export(gr_similar_books)
 importFrom(magrittr,"%>%")
