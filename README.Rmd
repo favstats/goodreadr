@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/goodreadr)](https://CRAN.R-project.org/package=goodreadr)
 <!-- badges: end -->
 
-The goal of goodreadr is to ...
+The goal of goodreadr is to scrape data from goodreads.
 
 ## Installation
 
@@ -39,18 +39,14 @@ library(goodreadr)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Get quotes from a book:
 
-```{r cars}
-summary(cars)
+```{r}
+quotes_dat <- gr_quotes("https://www.goodreads.com/work/quotes/85056676-covid-19-the-great-reset") 
+
+quotes_dat
+```
+```{r}
+quotes_dat$text
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
