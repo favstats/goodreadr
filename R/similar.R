@@ -7,13 +7,20 @@ gr_similar_books <- function(x, direct = F) {
     raw <- x %>%  xml2::read_html()
 
     if(!direct){
-        x <- raw %>%
+        link <- raw %>%
             rvest::html_nodes(".seeMoreLink") %>%
             rvest::html_attr("href")  %>%
             .[1] #%>%
             # paste0("https://www.goodreads.com", .)
 
-        raw <- x %>%  xml2::read_html()
+        if(is.na(link)){
+            message(x)
+            message("No similar books found.")
+            return(invisible())
+        }
+
+
+        raw <- link %>%  xml2::read_html()
     }
 
     books_html <- raw %>%
