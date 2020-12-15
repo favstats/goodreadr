@@ -1,8 +1,20 @@
 
 
 #' @export
-gr_similar_books <- function(x) {
+gr_similar_books <- function(x, direct = F) {
+    # x <- "https://www.goodreads.com/book/show/53824396-unreported-truths-about-covid-19-and-lockdowns#other_reviews"
+
     raw <- x %>%  xml2::read_html()
+
+    if(!direct){
+        x <- raw %>%
+            rvest::html_nodes(".seeMoreLink") %>%
+            rvest::html_attr("href")  %>%
+            .[1] #%>%
+            # paste0("https://www.goodreads.com", .)
+
+        raw <- x %>%  xml2::read_html()
+    }
 
     books_html <- raw %>%
         rvest::html_nodes(".listWithDividers__item") %>%

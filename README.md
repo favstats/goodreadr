@@ -32,19 +32,19 @@ library(goodreadr)
 ### Get quotes from a book
 
 ``` r
-quotes_dat <- gr_quotes("https://www.goodreads.com/work/quotes/85056676-covid-19-the-great-reset") 
+quotes_dat <- gr_quotes("https://www.goodreads.com/book/show/54498122-covid-19") 
 
 quotes_dat
 #> # A tibble: 7 x 10
 #>   author author_url book_title book_url text  likes hyperlink ratings avg_rating
 #>   <chr>  <chr>      <chr>      <chr>    <chr> <dbl> <chr>       <dbl>      <dbl>
-#> 1 Klaus~ https://w~ COVID-19:~ https:/~ “His~     0 https://~     189       3.12
-#> 2 Klaus~ https://w~ COVID-19:~ https:/~ “How~     0 https://~     189       3.12
-#> 3 Klaus~ https://w~ COVID-19:~ https:/~ “The~     0 https://~     189       3.12
-#> 4 Klaus~ https://w~ COVID-19:~ https:/~ “Out~     0 https://~     189       3.12
-#> 5 Klaus~ https://w~ COVID-19:~ https:/~ “The~     0 https://~     189       3.12
-#> 6 Klaus~ https://w~ COVID-19:~ https:/~ “How~     0 https://~     189       3.12
-#> 7 Klaus~ https://w~ COVID-19:~ https:/~ “As ~     0 https://~     189       3.12
+#> 1 Klaus~ https://w~ COVID-19:~ https:/~ “His~     0 https://~     190       3.11
+#> 2 Klaus~ https://w~ COVID-19:~ https:/~ “How~     0 https://~     190       3.11
+#> 3 Klaus~ https://w~ COVID-19:~ https:/~ “The~     0 https://~     190       3.11
+#> 4 Klaus~ https://w~ COVID-19:~ https:/~ “Out~     0 https://~     190       3.11
+#> 5 Klaus~ https://w~ COVID-19:~ https:/~ “The~     0 https://~     190       3.11
+#> 6 Klaus~ https://w~ COVID-19:~ https:/~ “How~     0 https://~     190       3.11
+#> 7 Klaus~ https://w~ COVID-19:~ https:/~ “As ~     0 https://~     190       3.11
 #> # ... with 1 more variable: reviews <dbl>
 ```
 
@@ -63,22 +63,22 @@ quotes_dat$text
 
 ``` r
 
-similar_dat <- gr_similar_books("https://www.goodreads.com/book/similar/85056676-covid-19-the-great-reset")
+similar_dat <- gr_similar_books("https://www.goodreads.com/book/show/54498122-covid-19")
 
 similar_dat
 #> # A tibble: 30 x 7
 #>    author  author_url   book_title    book_url   avg_rating reviews book_cover  
 #>    <chr>   <chr>        <chr>         <chr>           <dbl>   <dbl> <chr>       
 #>  1 Richar~ https://www~ The COVID-19~ https://w~       4        129 https://i.g~
-#>  2 Fareed~ https://www~ Ten Lessons ~ https://w~       4.07     652 https://i.g~
+#>  2 Fareed~ https://www~ Ten Lessons ~ https://w~       4.07     659 https://i.g~
 #>  3 Eric D~ https://www~ The Midnight~ https://w~       3.88      33 https://i.g~
-#>  4 Adam K~ https://www~ The Rules of~ https://w~       3.84     676 https://i.g~
-#>  5 Orhan ~ https://www~ Kirmizi Saçl~ https://w~       3.71    6115 https://i.g~
-#>  6 Debora~ https://www~ COVID-19: Th~ https://w~       4.05     228 https://i.g~
+#>  4 Adam K~ https://www~ The Rules of~ https://w~       3.84     677 https://i.g~
+#>  5 Orhan ~ https://www~ Kirmizi Saçl~ https://w~       3.71    6116 https://i.g~
+#>  6 Debora~ https://www~ COVID-19: Th~ https://w~       4.05     229 https://i.g~
 #>  7 Aaron ~ https://www~ Fully Automa~ https://w~       3.71     643 https://i.g~
-#>  8 Robert~ https://www~ The Ride of ~ https://w~       4.36   26383 https://i.g~
-#>  9 Daniel~ https://www~ Drive: The S~ https://w~       3.94   88107 https://i.g~
-#> 10 Rutger~ https://www~ Humankind: A~ https://w~       4.41    3149 https://i.g~
+#>  8 Robert~ https://www~ The Ride of ~ https://w~       4.36   26415 https://i.g~
+#>  9 Daniel~ https://www~ Drive: The S~ https://w~       3.94   88118 https://i.g~
+#> 10 Rutger~ https://www~ Humankind: A~ https://w~       4.41    3155 https://i.g~
 #> # ... with 20 more rows
 ```
 

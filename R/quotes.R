@@ -1,9 +1,20 @@
 
 #' @export
-gr_quotes <- function(x) {
+gr_quotes <- function(x, direct = F) {
     raw <- x %>%
         xml2::read_html()
 
+    if(!direct){
+        x <- raw %>%
+            rvest::html_nodes(".bigBoxBody > div > a")# %>%
+
+        x <- x[x %>% as.character() %>% stringr::str_detect("quotes")] %>%
+            rvest::html_attr("href")  %>%
+            # .[1] #%>%
+            paste0("https://www.goodreads.com", .)
+
+        raw <- x %>%  xml2::read_html()
+    }
 
     booktitle_html <- raw %>%
         rvest::html_nodes(".bookTitle")
