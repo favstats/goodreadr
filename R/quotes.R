@@ -8,7 +8,15 @@ gr_quotes <- function(x, direct = F) {
         x <- raw %>%
             rvest::html_nodes(".bigBoxBody > div > a")# %>%
 
-        x <- x[x %>% as.character() %>% stringr::str_detect("quotes")] %>%
+        quotes <- x[x %>% as.character() %>% stringr::str_detect("quotes")]
+
+        if(length(quotes)==0){
+            message(x)
+            message("No quotes found.")
+            return(invisible())
+        }
+
+        x <- quotes %>%
             rvest::html_attr("href")  %>%
             # .[1] #%>%
             paste0("https://www.goodreads.com", .)
