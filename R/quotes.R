@@ -5,10 +5,10 @@ gr_quotes <- function(x, direct = F) {
         xml2::read_html()
 
     if(!direct){
-        x <- raw %>%
-            rvest::html_nodes(".bigBoxBody > div > a")# %>%
+        quotes <- raw %>%
+            rvest::html_nodes(".bigBoquotesBody > div > a")# %>%
 
-        quotes <- x[x %>% as.character() %>% stringr::str_detect("quotes")]
+        quotes <- quotes[quotes %>% as.character() %>% stringr::str_detect("quotes")]
 
         if(length(quotes)==0){
             message(x)
