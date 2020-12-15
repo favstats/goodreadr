@@ -16,7 +16,7 @@ gr_similar_books <- function(x, direct = F) {
         if(is.na(link)){
             message(x)
             message("No similar books found.")
-            return(invisible())
+            return(NULL)
         }
 
 
@@ -37,20 +37,22 @@ gr_similar_books <- function(x, direct = F) {
 
     author <- books_html %>%
         rvest::html_nodes(".u-paddingBottomTiny > span:nth-child(2)") %>%
-        rvest::html_text()
+        rvest::html_text() %>% paste0(collapse = ", ")
 
     author_url <- books_html %>%
         rvest::html_nodes(".u-paddingBottomTiny > span:nth-child(2) > span > a")  %>%
-        rvest::html_attr("href")
+        rvest::html_attr("href") %>% paste0(collapse = ", ")
 
     avg_rating <- books_html %>%
-        rvest::html_nodes("[class='gr-metaText']") %>%
-        rvest::html_text() %>%
+        purrr::map(~rvest::html_nodes(.x, "[class='gr-metaText']")) %>%
+        purrr::map(rvest::html_text) %>%
+        purrr::map_chr(~ifelse(length(.x)==0, 0, .x)) %>%
         readr::parse_number()
 
     reviews <- books_html %>%
-        rvest::html_nodes(".u-inlineBlock") %>%
-        rvest::html_text() %>%
+        purrr::map(~rvest::html_nodes(.x, ".u-inlineBlock")) %>%
+        purrr::map(rvest::html_text) %>%
+        purrr::map_chr(~ifelse(length(.x)==0, 0, .x)) %>%
         readr::parse_number()
 
     book_cover <- books_html %>%

@@ -13,7 +13,7 @@ gr_quotes <- function(x, direct = F) {
         if(length(quotes)==0){
             message(x)
             message("No quotes found.")
-            return(invisible())
+            return(NULL)
         }
 
         x <- quotes %>%
@@ -38,11 +38,11 @@ gr_quotes <- function(x, direct = F) {
         rvest::html_nodes(".authorName")
 
     author <- author_html %>%
-        rvest::html_text()
+        rvest::html_text() %>% paste0(collapse = ", ")
 
     author_url <- author_html  %>%
         rvest::html_attr("href") %>%
-        paste0("https://www.goodreads.com", .)
+        paste0("https://www.goodreads.com", .) %>% paste0(collapse = ", ")
 
 
     ratings_dat <- raw %>% rvest::html_nodes(xpath = "/html/body/div[2]/div[3]/div[1]/div[2]/div[3]/text()[6]") %>%

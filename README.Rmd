@@ -38,6 +38,17 @@ library(goodreadr)
 ## basic example code
 ```
 
+### Get book stats
+
+```{r}
+# debugonce(gr_books)
+
+books_dat <- gr_books("https://www.goodreads.com/book/show/54498122-covid-19") 
+
+books_dat
+```
+
+
 ### Get quotes from a book
 
 ```{r}
