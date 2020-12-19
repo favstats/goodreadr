@@ -18,7 +18,7 @@ similar_link <- function(raw, x){
 
 #' @export
 gr_similar_books <- function(x, direct = F) {
-    # x <- "https://www.goodreads.com/book/show/53824396-unreported-truths-about-covid-19-and-lockdowns#other_reviews"
+    # x <- "https://www.goodreads.com/book/show/12158480-why-nations-fail?ac=1&from_search=true&qid=waEu83hPjZ&rank=1"
 
     raw <- x %>%  xml2::read_html()
 
@@ -49,11 +49,11 @@ gr_similar_books <- function(x, direct = F) {
 
     author <- books_html %>%
         rvest::html_nodes(".u-paddingBottomTiny > span:nth-child(2)") %>%
-        rvest::html_text() %>% paste0(collapse = ", ")
+        rvest::html_text()# %>% paste0(collapse = ", ")
 
     author_url <- books_html %>%
         rvest::html_nodes(".u-paddingBottomTiny > span:nth-child(2) > span > a")  %>%
-        rvest::html_attr("href") %>% paste0(collapse = ", ")
+        rvest::html_attr("href")# %>% paste0(collapse = ", ")
 
     avg_rating <- books_html %>%
         purrr::map(~rvest::html_nodes(.x, "[class='gr-metaText']")) %>%
