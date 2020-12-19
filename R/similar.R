@@ -1,5 +1,21 @@
 
 
+similar_link <- function(raw, x){
+    link <- raw %>%
+        rvest::html_nodes(".seeMoreLink") %>%
+        rvest::html_attr("href")  %>%
+        .[1] #%>%
+    # paste0("https://www.goodreads.com", .)
+
+    if(is.na(link)){
+        message(x)
+        message("No similar books found.")
+        return(NA)
+    }
+
+    return(link)
+}
+
 #' @export
 gr_similar_books <- function(x, direct = F) {
     # x <- "https://www.goodreads.com/book/show/53824396-unreported-truths-about-covid-19-and-lockdowns#other_reviews"
@@ -7,20 +23,16 @@ gr_similar_books <- function(x, direct = F) {
     raw <- x %>%  xml2::read_html()
 
     if(!direct){
-        link <- raw %>%
-            rvest::html_nodes(".seeMoreLink") %>%
-            rvest::html_attr("href")  %>%
-            .[1] #%>%
-            # paste0("https://www.goodreads.com", .)
 
-        if(is.na(link)){
-            message(x)
-            message("No similar books found.")
+        x <- similar_link(raw, x)
+
+        if(is.na(x)){
             return(NULL)
+        } else {
+        raw <- x %>%
+            xml2::read_html()
         }
 
-
-        raw <- link %>%  xml2::read_html()
     }
 
     books_html <- raw %>%

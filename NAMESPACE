@@ -2,6 +2,7 @@
 
 export("%>%")
 export(gr_books)
+export(gr_genres)
 export(gr_quotes)
 export(gr_similar_books)
 importFrom(magrittr,"%>%")

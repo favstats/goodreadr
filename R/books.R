@@ -8,6 +8,11 @@ gr_books <- function(x) {
 
     raw <- x %>%  xml2::read_html()
 
+    quotes_url <- quote_link(raw, x)
+    similar_books_url <- similar_link(raw, x)
+    genre_url <- genre_link(raw, x)
+
+
     book_title <- raw %>% rvest::html_nodes("#bookTitle") %>%
         rvest::html_text() %>%
         stringr::str_remove_all("\n") %>% stringr::str_trim()
@@ -61,7 +66,7 @@ gr_books <- function(x) {
         rvest::html_attr("src")
 
 
-    book_dat <- tibble::tibble(author, author_url, book_title, book_url, descr, avg_rating, reviews, ratings, book_cover)
+    book_dat <- tibble::tibble(author, author_url, book_title, book_url, descr, avg_rating, reviews, ratings, book_cover, quotes_url, similar_books_url, genre_url)
 
     return(book_dat)
 

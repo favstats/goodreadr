@@ -1,27 +1,42 @@
 
+
+
+quote_link <- function(raw, x){
+    quotes <- raw %>%
+        rvest::html_nodes(".bigBoxBody > div > a")# %>%
+
+    quotes <- quotes[quotes %>% as.character() %>% stringr::str_detect("quotes")]
+
+    if(length(quotes)==0){
+        message(x)
+        message("No quotes found.")
+        return(NA)
+    }
+
+    x <- quotes %>%
+        rvest::html_attr("href")  %>%
+        # .[1] #%>%
+        paste0("https://www.goodreads.com", .)
+
+    return(x)
+}
+
 #' @export
 gr_quotes <- function(x, direct = F) {
     raw <- x %>%
         xml2::read_html()
 
     if(!direct){
-        quotes <- raw %>%
-            rvest::html_nodes(".bigBoquotesBody > div > a")# %>%
 
-        quotes <- quotes[quotes %>% as.character() %>% stringr::str_detect("quotes")]
+        x <- quote_link(raw, x)
 
-        if(length(quotes)==0){
-            message(x)
-            message("No quotes found.")
+        if(is.na(x)){
             return(NULL)
+        } else {
+            raw <- x %>%
+                xml2::read_html()
         }
 
-        x <- quotes %>%
-            rvest::html_attr("href")  %>%
-            # .[1] #%>%
-            paste0("https://www.goodreads.com", .)
-
-        raw <- x %>%  xml2::read_html()
     }
 
     booktitle_html <- raw %>%
