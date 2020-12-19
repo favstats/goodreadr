@@ -22,6 +22,8 @@ gr_similar_books <- function(x, direct = F) {
 
     raw <- x %>%  xml2::read_html()
 
+    origin_book_url <- x
+
     if(!direct){
 
         x <- similar_link(raw, x)
@@ -72,7 +74,7 @@ gr_similar_books <- function(x, direct = F) {
         rvest::html_nodes(xpath = "a/img") %>%
         rvest::html_attr("src")
 
-    similar_dat <- tibble::tibble(author, author_url, book_title, book_url, avg_rating, reviews, book_cover)
+    similar_dat <- tibble::tibble(author, author_url, book_title, book_url, avg_rating, reviews, book_cover, origin_book_url)
 
     return(similar_dat)
 
