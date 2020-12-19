@@ -4,7 +4,7 @@
 
 #' @export
 gr_books <- function(x) {
-    # x <- "https://www.goodreads.com/book/show/44665940-qanon-and-the-battle-of-armageddon"
+    # x <- "https://www.goodreads.com/book/show/45036066-a-bigger-problem-than-climate-change"
 
     raw <- x %>%  xml2::read_html()
 
@@ -43,12 +43,17 @@ gr_books <- function(x) {
         readr::parse_number()
 
     descr <- raw %>% rvest::html_nodes("#description") %>%
-        rvest::html_children() %>%
-        .[2] %>%
-        rvest::html_text()
+        rvest::html_children()
 
-    if(length(descr)==0) descr <- NA
-
+    if(length(descr)==0) {
+        descr <- NA
+    } else if(length(descr) == 1){
+        descr <- descr %>% rvest::html_text()
+    } else if (length(descr) > 1){
+        descr <- descr %>%
+            .[2] %>%
+            rvest::html_text()
+    }
 
     book_url <- x
 
