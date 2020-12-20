@@ -37,7 +37,9 @@ scrape_reviews <- function(review) {
     review_shelves_url <- review %>%
         rvest::html_nodes(".uitext.greyText a") %>%
         rvest::html_attr("href") %>%
-        paste0("https://www.goodreads.com", .) %>% paste0(collapse = ", ")
+        paste0("https://www.goodreads.com", .) %>%
+        paste0(collapse = ", ") %>%
+        ifelse(. == "https://www.goodreads.com", NA, .)
 
 
     review_text <- review %>%
