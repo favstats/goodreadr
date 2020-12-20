@@ -66,7 +66,7 @@ gr_books <- function(x) {
         rvest::html_attr("src")
 
 
-    book_dat <- tibble::tibble(author, author_url, book_title, book_url, descr, avg_rating, reviews, ratings, book_cover, quotes_url, similar_books_url, genre_url)
+    book_dat <- tibble::tibble(author, author_url, author_followers, book_title, book_url, descr, avg_rating, reviews, ratings, book_cover, quotes_url, similar_books_url, genre_url)
 
     return(book_dat)
 

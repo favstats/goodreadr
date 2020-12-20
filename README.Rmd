@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+
+devtools::load_all()
 ```
 
 # goodreadr
@@ -33,8 +35,9 @@ devtools::install_github("favstats/goodreadr")
 ## Examples
 
 
-```{r example}
+```{r example, eval = F}
 library(goodreadr)
+
 ## basic example code
 ```
 
@@ -82,4 +85,21 @@ genre_dat
 ```
 ```{r}
 genre_dat$genre
+```
+
+
+### Get Book reviews (only first 20)
+
+```{r}
+
+review_dat <- gr_reviews("https://www.goodreads.com/book/show/54498122-covid-19")
+
+review_dat
+```
+
+
+
+```{r}
+
+review_dat$review_text
 ```

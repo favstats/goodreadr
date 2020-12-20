@@ -80,13 +80,19 @@ gr_genres <- function(x, direct = F, scrape_pages = NULL) {
                 rvest::html_nodes(".mediumText") %>%
                 rvest::html_text()
 
+            genre_url <- shelf_html %>%
+                rvest::html_nodes(".mediumText") %>%
+                rvest::html_attr("href") %>%
+                paste0("https://www.goodreads.com", .)
+
+
             raters <- shelf_html %>%
                 rvest::html_nodes(".smallText") %>%
                 rvest::html_text() %>%
                 readr::parse_number()
 
 
-            genre_dat <- tibble::tibble(book_url, genre, genre_raters = raters)
+            genre_dat <- tibble::tibble(book_url, genre, genre_url, genre_raters = raters)
 
             return(genre_dat)
         })
