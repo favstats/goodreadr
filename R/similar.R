@@ -29,7 +29,7 @@ gr_similar_books <- function(x, direct = F) {
         x <- similar_link(raw, x)
 
         if(is.na(x)){
-            return(NULL)
+            return(tibble())
         } else {
         raw <- x %>%
             xml2::read_html()

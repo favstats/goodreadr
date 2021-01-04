@@ -38,7 +38,7 @@ gr_genres <- function(x, direct = F, scrape_pages = NULL) {
         x <- genre_link(raw, x)
 
         if(is.na(x)){
-            return(NULL)
+            return(tibble())
         } else {
             raw <- x %>%
                 xml2::read_html()
