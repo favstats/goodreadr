@@ -3,6 +3,8 @@
 
 # goodreadr
 
+DEFUNCT! DOES NOT WORK ANYMORE NEEDS UPDATE!
+
 <!-- badges: start -->
 
 [![Lifecycle:
