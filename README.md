@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# goodreadr
+# DEFUNCT! DOES NOT WORK ANYMORE NEEDS UPDATE!
 
-DEFUNCT! DOES NOT WORK ANYMORE NEEDS UPDATE!
+
 
 <!-- badges: start -->
 
